@@ -13,6 +13,7 @@
 		E3CBF4432032D0B8000FE26C /* MonumentosIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E3CBF4412032D0B8000FE26C /* MonumentosIOS.xcdatamodeld */; };
 		E3CBF4452032D0B8000FE26C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3CBF4442032D0B8000FE26C /* Assets.xcassets */; };
 		E3CBF4482032D0B8000FE26C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CBF4462032D0B8000FE26C /* LaunchScreen.storyboard */; };
+		E3CBF4522032E140000FE26C /* MonumentosAragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CBF4512032E140000FE26C /* MonumentosAragon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E3CBF4442032D0B8000FE26C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3CBF4472032D0B8000FE26C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3CBF4492032D0B8000FE26C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3CBF4512032E140000FE26C /* MonumentosAragon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonumentosAragon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				E3CBF43A2032D0B8000FE26C /* AppDelegate.swift */,
 				E3CBF43C2032D0B8000FE26C /* ViewController.swift */,
 				E3CBF43E2032D0B8000FE26C /* Main.storyboard */,
+				E3CBF4512032E140000FE26C /* MonumentosAragon.swift */,
 				E3CBF4442032D0B8000FE26C /* Assets.xcassets */,
 				E3CBF4462032D0B8000FE26C /* LaunchScreen.storyboard */,
 				E3CBF4492032D0B8000FE26C /* Info.plist */,
@@ -141,6 +144,7 @@
 			files = (
 				E3CBF4432032D0B8000FE26C /* MonumentosIOS.xcdatamodeld in Sources */,
 				E3CBF43D2032D0B8000FE26C /* ViewController.swift in Sources */,
+				E3CBF4522032E140000FE26C /* MonumentosAragon.swift in Sources */,
 				E3CBF43B2032D0B8000FE26C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
