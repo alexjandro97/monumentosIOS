@@ -13,17 +13,28 @@ class MonumentosAragon: UITableViewController, NSFetchedResultsControllerDelegat
     var managedObjectContext : NSManagedObjectContext? = nil;
     var fetchedResultsController = NSFetchedResultsController<NSFetchRequestResult>()
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        switch 	type {
-            case .insert: 	self.tableView.insertRows(at: [newIndexPath!], with: .fade)
-            case .delete: 	self.tableView.deleteRows(at: [newIndexPath!], with: .fade)
-        default: return
-        }
-    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let AppDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        
+        let managedObjectContext = AppDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Monumentos")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "nombre", ascending:true)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+            print("datos cargados ok")
+        } catch let error as NSError {
+            print("No se ha podido leer \(error), \(error.userInfo)")
+        }
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,6 +43,15 @@ class MonumentosAragon: UITableViewController, NSFetchedResultsControllerDelegat
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch 	type {
+        case .insert: 	self.tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete: 	self.tableView.deleteRows(at: [newIndexPath!], with: .fade)
+        default: return
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,24 +60,24 @@ class MonumentosAragon: UITableViewController, NSFetchedResultsControllerDelegat
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return self.fetchedResultsController.sections!.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.fetchedResultsController.sections![section].numberOfObjects
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MonumentosAragon", for: indexPath)
 
-        // Configure the cell...
-
+        let registro : NSManagedObject = self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
+        
+        cell.textLabel?.text = registro.value(forKey: "nombre") as! String?
+        cell.detailTextLabel?.text = registro.value(forKey: "titulo") as! String?
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
